@@ -28,19 +28,20 @@ const servidor = net.createServer((socket) => {
       //clientes guarda los sockets conectados con su respectivo nombre.
       clientes.forEach((nombreUsuario, cliente) => {
         //recorremos los usuarios
-        if (cliente !== socket) { // para no ver nuestro propio mensaje, 
-          cliente.write(mensajeFormateado + "\n");
+        if (cliente !== socket) { // para no ver nuestro propio mensaje
+          cliente.write(mensajeFormateado + "\n"); // 
         }
       });
     });
 
+    //se ejecuta cuando un usuario se desconecta voluntariamente
     socket.on("end", () => {
       console.log(`${nombreUsuario} se ha desconectado.`);
       clientes.delete(socket);
     });
   });
 });
-
+//inicia el servidor tcp en el puerto 3000
 servidor.listen(3000, () => {
   console.log("Servidor activo en el puerto 3000...");
 });
