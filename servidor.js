@@ -6,16 +6,16 @@ const clientes = new Map();
 
 //creamos el servidor tcp, acepta conexiones de clientes y envia un mensaje inicial
 const servidor = net.createServer((socket) => {
-  socket.write("Escribe tu nombre: ");
+  socket.write("💬 Ingresa tu nombre para unirte al chat:  ");
 
   //recibe el nombre del usuario cuando se conecta y lo guarda en la lista de usuarios 
   socket.once("data", (datos) => {
     const nombreUsuario = datos.toString().trim();
     clientes.set(socket, nombreUsuario);
-    console.log(`${nombreUsuario} se ha conectado.`);
+    console.log(`✅ ${nombreUsuario} se ha conectado. (${clientes.size}) usuarios en linea`);
 
     //Da un mensaje de bienvenida al usuario
-    socket.write(`Bienvenido, ${nombreUsuario}! Puedes empezar a chatear.\n`);
+    socket.write(`🎉 Bienvenido, ${nombreUsuario}! Puedes empezar a chatear.\n`);
 
     //mensaje sin espacios con hora exacta de envio 
     socket.on("data", (mensaje) => {
@@ -41,7 +41,8 @@ const servidor = net.createServer((socket) => {
     });
   });
 });
+
 //inicia el servidor tcp en el puerto 3000
-servidor.listen(3000, () => {
+servidor.listen(3000, "192.168.1.9", () => {
   console.log("Servidor activo en el puerto 3000...");
 });
