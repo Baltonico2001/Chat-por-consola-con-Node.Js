@@ -9,12 +9,12 @@ const usuario = new net.Socket();
 
 //crea la interfaz de lectura y escritura
 const entrada = readline.createInterface({
-  input: process.stdin, //entrada del usuario 
-  output: process.stdout, // muestra el mensaje en consola 
+  input: process.stdin, //entrada del usuario por teclado 
+  output: process.stdout, // muestra el mensaje de salida por consola 
 });
 
 //conectamos el cliente al puerto 3000, localmente(localhost)
-usuario.connect(3000, "localhost", () => {
+usuario.connect(3000, "20.20.2.135", () => {
   console.log("Conectado al chat.");
 });
 
