@@ -6,13 +6,13 @@ const clientes = new Map();
 
 //creamos el servidor tcp, acepta conexiones de clientes y envia un mensaje inicial
 const servidor = net.createServer((socket) => {
-  socket.write("💬 Ingresa tu nombre para unirte al chat:  ");
+  socket.write(" Ingresa tu nombre para unirte al chat:  ");
 
   //recibe el nombre del usuario cuando se conecta y lo guarda en la lista de usuarios 
   socket.once("data", (datos) => {
     const nombreUsuario = datos.toString().trim();
     clientes.set(socket, nombreUsuario);
-    console.log(`✅ ${nombreUsuario} se ha conectado. (${clientes.size}) usuarios en linea`);
+    console.log(` ${nombreUsuario} se ha conectado. (${clientes.size}) usuarios en linea`);
 
     //Da un mensaje de bienvenida al usuario
     socket.write(`🎉 Bienvenido, ${nombreUsuario}! Puedes empezar a chatear.\n`);
