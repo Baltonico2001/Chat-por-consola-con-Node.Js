@@ -14,7 +14,7 @@ const entrada = readline.createInterface({
 });
 
 //conectamos el cliente al puerto 3000, localmente(localhost)
-usuario.connect(3000, "20.20.2.135", () => {
+usuario.connect(3000, "192.168.0.133", () => {
   console.log("Conectado al chat.");
 });
 
